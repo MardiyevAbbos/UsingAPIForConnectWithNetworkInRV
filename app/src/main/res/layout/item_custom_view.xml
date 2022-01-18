@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".98"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_tennisImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/tv_tennisName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Athlete FullName"
+                android:textSize="21sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tv_tennisLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Athlete FullName"
+                android:textSize="20sp"
+                android:textColor="#DA000000"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".02"
+        android:layout_marginHorizontal="10dp"
+        android:background="#000000"/>
+
+</LinearLayout>
