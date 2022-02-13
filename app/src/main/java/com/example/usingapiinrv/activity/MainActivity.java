@@ -16,22 +16,29 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.usingapiinrv.R;
 import com.example.usingapiinrv.adapter.PlayerAdapter;
+import com.example.usingapiinrv.adapter.ProductAdapter;
 import com.example.usingapiinrv.helper.ApiClient;
 import com.example.usingapiinrv.helper.ApiInterface;
 import com.example.usingapiinrv.helper.ServerUrl;
 import com.example.usingapiinrv.model.Player;
 import com.example.usingapiinrv.model.PlayerData;
+import com.example.usingapiinrv.model.ProductData;
+import com.example.usingapiinrv.model.ProductModel;
 import com.github.kittinunf.fuel.Fuel;
 import com.github.kittinunf.fuel.FuelKt;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import kotlin.jvm.internal.TypeReference;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -53,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
 
         initView();
 
-        // apiUsingAsyncHttp();
+         apiUsingAsyncHttp();
         // apiUsingFuel();
         // apiUsingVolley();
         // apiUsingOkHttp();
-         apiUsingRetrofit();
+        // apiUsingRetrofit();
 
     }
 
@@ -67,10 +74,18 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
+
     }
 
 
-    private void refreshAdapter(List<Player> players) {
+    private void refreshProductAdapter(List<ProductModel> items) {
+        progressBar.setVisibility(View.GONE);
+        ProductAdapter adapter = new ProductAdapter(context, items);
+        recyclerView.setAdapter(adapter);
+    }
+
+
+    private void refreshTennisUrlAdapter(List<Player> players) {
         PlayerAdapter adapter = new PlayerAdapter(context, players);
         recyclerView.setAdapter(adapter);
     }
@@ -82,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
         String message = playerData.getMessage();
         fireToast(message);
         List<Player> players = playerData.getData();
-        refreshAdapter(players);
+        refreshTennisUrlAdapter(players);
     }
 
 
