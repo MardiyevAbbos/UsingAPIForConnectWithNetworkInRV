@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
 
         initView();
 
-         apiUsingAsyncHttp();
+        // apiUsingAsyncHttp();
         // apiUsingFuel();
         // apiUsingVolley();
-        // apiUsingOkHttp();
+        apiUsingOkHttp();
         // apiUsingRetrofit();
 
     }
@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
 
             PlayerData playerData = new Gson().fromJson(response, PlayerData.class);
             processWithResponse(playerData);
+
         }), (error -> {
             Log.d("@@@", "@@@ onError: " + error);
 
@@ -172,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements ServerUrl {
 
                 runOnUiThread(() -> {
                     Log.d("@@@", "@@@ onResponse: " + resp);
-                    PlayerData playerData = new Gson().fromJson(resp, PlayerData.class);
-                    processWithResponse(playerData);
+                    ArrayList<ProductModel> list = new Gson().fromJson(resp, new TypeToken<ArrayList<ProductModel>>(){}.getType());
+                    refreshProductAdapter(list);
                 });
             }
         });
